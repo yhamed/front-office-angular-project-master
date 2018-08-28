@@ -1,20 +1,549 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Account Login - Polishop eCommerce HTML Template</title>
+  <link href="image/favicon.png" rel="icon" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="clean modern and elegant corporate look eCommerce html template">
+  <meta name="author" content="">
+  <!-- CSS Part Start-->
+  <link rel="stylesheet" type="text/css" href="assets/css/stylesheet.css" />
+  <link rel="stylesheet" type="text/css" href="assets/css/slideshow.css" media="screen" />
+  <link rel="stylesheet" type="text/css" href="assets/css/flexslider.css" media="screen" />
+  <link rel="stylesheet" type="text/css" href="assets/js/colorbox/colorbox.css" media="screen" />
+  <link rel="stylesheet" type="text/css" href="assets/css/carousel.css" media="screen" />
+  <!-- CSS Part End-->
+  <!-- JS Part Start-->
+  <script type="text/javascript" src="assets/js/jquery-1.7.1.min.js"></script>
+  <script type="text/javascript" src="assets/js/jquery.nivo.slider.pack.js"></script>
+  <script type="text/javascript" src="assets/js/jquery.flexslider.js"></script>
+  <script type="text/javascript" src="assets/js/jquery.easing-1.3.min.js"></script>
+  <script type="text/javascript" src="assets/js/jquery.jcarousel.min.js"></script>
+  <script type="text/javascript" src="assets/js/colorbox/jquery.colorbox-min.js"></script>
+  <script type="text/javascript" src="assets/js/tabs.js"></script>
+  <script type="text/javascript" src="assets/js/cloud_zoom.js"></script>
+  <script type="text/javascript" src="assets/js/jquery.dcjqaccordion.js"></script>
+  <script type="text/javascript" src="assets/js/custom.js"></script>
+  <script type="text/javascript" src="assets/js/html5.js"></script>
+  <!-- JS Part End-->
+  <!-- Google Fonts (Droid Sans) Start -->
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans&v1' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=&v1' rel='stylesheet' type='text/css'>
+  <!-- Google Fonts (Droid Sans) End -->
+</head>
+<body>
+<div class="wrapper-box">
+  <div class="main-wrapper">
+    <!--Header Part Start-->
+    <header id="header">
+      <div class="htop">
+        <div id="language"> <span>Language<b></b></span>
+          <ul>
+            <li><a title="English"><img src="assets/image/flags/gb.png" alt="English" />English</a></li>
+            <li><a title="Türkçe"><img src="assets/image/flags/tr.png" alt="Türkçe" />Türkçe</a></li>
+          </ul>
+        </div>
+        <div id="currency"> <span>Currency<b></b></span>
+          <ul>
+            <li> <a title="Euro">€ - Euro</a> </li>
+            <li> <a title="Pound Sterling">£ - Pound Sterling</a> </li>
+            <li> <a title="US Dollar"><b>$ - US Dollar</b></a> </li>
+          </ul>
+        </div>
+        <div class="links"> <a (click)="redirectTo('login')">Login</a> <a (click)="redirectTo('register')">Register</a> <a href="#" id="wishlist-total">Wish List (0)</a> <a href="#">My Account</a> <a (click)="redirectTo('checkout')">Checkout</a>  <a (click)="logout()">Logout</a> </div>
+      </div>
+      <section class="hsecond">
+        <div id="logo"><a><img (click)="redirectTo('/')" src="assets/image/logo.png" title="Polishop" alt="Polishop" /></a></div>
+        <div id="search">
+          <div class="button-search"></div>
+          <input type="text" name="search" placeholder="Search" value="" />
+        </div>
+        <!--Mini Shopping Cart Start-->
+        <section id="cart">
+          <div class="heading">
+            <h4><img src="assets/image/cart-bg.png" style="height: 32px; width: 32px" ></h4>
+            <a><span id="cart-total"> {{articleNbr}} item(s) - {{sumMoney}} D.T</span></a> </div>
+          <div class="content">
+            <div class="mini-cart-info">
+              <table>
+                <tr *ngFor="let c of chart">
+                  <td class="image"><a><img style="width: 50px; height: 50px;" src="{{c.product.image_url}}"  alt="iPhone 4s" title="{{c.product.label}}" /></a></td>
+                  <td class="name"><a>{{c.product.label}}</a></td>
+                  <td class="quantity">x&nbsp;{{c.quantity}}</td>
+                  <td class="total">{{c.product.price * c.quantity}}</td>
+                  <td class="remove"><img src="assets/image/remove-small.png" (click)="remove(c)" alt="Remove" title="Remove" /></td>
+                </tr>
+              </table>
+            </div>
+            <div class="mini-cart-total">
+              <table>
+                <!--<tr>-->
+                  <!--<td class="right"><b>Sub-Total:</b></td>-->
+                  <!--<td class="right">$601.00</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                  <!--<td class="right"><b>Eco Tax (-2.00):</b></td>-->
+                  <!--<td class="right">$4.00</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                  <!--<td class="right"><b>VAT (17.5%):</b></td>-->
+                  <!--<td class="right">$105.18</td>-->
+                <!--</tr>-->
+                <tr>
+                  <td class="right"><b>Total:</b></td>
+                  <td class="right">{{sumMoney}}</td>
+                </tr>
+              </table>
+            </div>
+            <div class="checkout"><a class="button" (click)="redirectTo('chekout')">View Cart</a> &nbsp; <a class="button" (click)="redirectTo('checkout')">Checkout</a></div>
+          </div>
+        </section>
+        <!--Mini Shopping Cart End-->
+        <div class="clear"></div>
+      </section>
+      <!--Top Menu(Horizontal Categories) Start-->
+      <nav id="menu">
+        <ul>
+          <li class="home"><a title="Home" (click)="redirectTo('/')"><span>Home</span></a></li>
+          <li class="categories_hor"><a>Categories</a>
+            <div>
+              <div class="column"> <a href="category.html">Electronics</a>
+                <div>
+                  <ul>
+                    <li><a href="category.html">Laptops (0)</a></li>
+                    <li><a href="category.html">Desktops (0)</a></li>
+                    <li><a href="category.html">Components (1)</a></li>
+                    <li><a href="category.html">Software (1)</a></li>
+                    <li><a href="category.html">Phones &amp; PDAs (4)</a></li>
+                    <li><a href="category.html">Cameras (2)</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="column"> <a href="category.html">Jewellery</a>
+                <div>
+                  <ul>
+                    <li><a href="category.html">Children's Jewellery (0)</a></li>
+                    <li><a href="category.html">Men's Jewellery (1)</a></li>
+                    <li><a href="category.html">Women's Jewellery (0)</a></li>
+                    <li><a href="category.html">Sample Test (0)</a></li>
+                    <li><a href="category.html">Sample Test11 (0)</a></li>
+                    <li><a href="category.html">Sample Test12 (0)</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="column"> <a href="category.html">Shoes</a>
+                <div>
+                  <ul>
+                    <li><a href="category.html">Children's Shoes (1)</a></li>
+                    <li><a href="category.html">Men's Shoes (2)</a></li>
+                    <li><a href="category.html">Women's Shoes (1)</a></li>
+                    <li><a href="category.html">Test Sample (0)</a></li>
+                    <li><a href="category.html">Test Sample1 (0)</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="column"> <a href="category.html">Clothing</a>
+                <div>
+                  <ul>
+                    <li><a href="category.html">Men (1)</a></li>
+                    <li><a href="category.html">Women (1)</a></li>
+                    <li><a href="category.html">Boys (0)</a></li>
+                    <li><a href="category.html">Girls (0)</a></li>
+                    <li><a href="category.html">Accessories (0)</a></li>
+                    <li><a href="category.html">Sample Test21 (0)</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="column"> <a href="category.html">Kids</a>
+                <div>
+                  <ul>
+                    <li><a href="category.html">Toys Kids (0)</a></li>
+                    <li><a href="category.html">Games (1)</a></li>
+                    <li><a href="category.html">Sample Test22 (0)</a></li>
+                    <li><a href="category.html">Sample Test15 (1)</a></li>
+                    <li><a href="category.html">Sample Kids (1)</a></li>
+                    <li><a href="category.html">Sample Test6 (0)</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="column"> <a href="category.html">Watches</a>
+                <div>
+                  <ul>
+                    <li><a href="category.html">Women's Watches (1)</a></li>
+                    <li><a href="category.html">Men's Watches (0)</a></li>
+                    <li><a href="category.html">Children's Watches (1)</a></li>
+                    <li><a href="category.html">Sample16 (0)</a></li>
+                    <li><a href="category.html">Sample17 (0)</a></li>
+                    <li><a href="category.html">test 18 (0)</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="column"> <a href="category.html">Sports</a>
+                <div>
+                  <ul>
+                    <li><a href="category.html">Women's Sports (1)</a></li>
+                    <li><a href="category.html">Children's Sports (0)</a></li>
+                    <li><a href="category.html">Men's Sports (1)</a></li>
+                    <li><a href="category.html">test 7 (0)</a></li>
+                    <li><a href="category.html">Sample 8 (0)</a></li>
+                    <li><a href="category.html">test 9 (0)</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="column"> <a href="category.html">Health</a>
+                <div>
+                  <ul>
+                    <li><a href="category.html">Sample Test1 (1)</a></li>
+                    <li><a href="category.html">Sample Test2 (0)</a></li>
+                    <li><a href="category.html">test 20 (0)</a></li>
+                    <li><a href="category.html">test 21 (0)</a></li>
+                    <li><a href="category.html">test 22 (0)</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="column"> <a href="category.html">Furniture</a>
+                <div>
+                  <ul>
+                    <li><a href="category.html">Bedrooms Furniture (0)</a></li>
+                    <li><a href="category.html">Kidsrooms furniture (0)</a></li>
+                    <li><a href="category.html">Kitchen Furniture (1)</a></li>
+                    <li><a href="category.html">Showcase Furniture (0)</a></li>
+                    <li><a href="category.html">Table Furniture (1)</a></li>
+                    <li><a href="category.html">Wall Furniture (0)</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="column"><a href="category.html">Books</a>
+                <div>
+                  <ul>
+                    <li><a href="category.html">Audio Books (1)</a></li>
+                    <li><a href="category.html">Comedy Book (1)</a></li>
+                    <li><a href="category.html">Comics Books (0)</a></li>
+                    <li><a href="category.html">Computer Book (1)</a></li>
+                    <li><a href="category.html">Cookies Books (0)</a></li>
+                    <li><a href="category.html">English Books (1)</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li><a target="_blank" href="#">Headers</a>
+            <div>
+              <ul>
+                <li><a (click)="redirectTo('/')">Header Style 1</a></li>
+                <li><a href="header-footer-2.html">Header Style 2</a></li>
+                <li><a href="header-footer-3.html">Header Style 3</a></li>
+              </ul>
+            </div>
+          </li>
+          <li><a target="_blank" href="#">Menus</a>
+            <div>
+              <ul>
+                <li><a (click)="redirectTo('/')">Horizontal Categories</a></li>
+                <li><a href="header-footer-2.html">Vertical Categories</a></li>
+                <li><a href="header-footer-3.html">Simple Categories</a></li>
+              </ul>
+            </div>
+          </li>
+          <li><a target="_blank" href="#">Sliders</a>
+            <div>
+              <ul>
+                <li><a (click)="redirectTo('/')">Nivo Slider</a></li>
+                <li><a href="header-footer-2.html">Flex Slider</a></li>
+              </ul>
+            </div>
+          </li>
+          <li><a target="_blank" href="#">Footers</a>
+            <div>
+              <ul>
+                <li><a href="index.html">Footer Style 1</a></li>
+                <li><a href="header-footer-2.html">Footer Style 2</a></li>
+                <li><a href="header-footer-3.html">Footer Style 3</a></li>
+              </ul>
+            </div>
+          </li>
+          <li><a href="">Custom Block</a>
+            <div class="custom_block">
+              <ul>
+                <li>
+                  <table border="0" cellpadding="0" cellspacing="0" style="width: 500px;">
+                    <tbody>
+                    <tr>
+                      <td><h3>You can insert any content here.</h3>
+                        <p>&nbsp;</p></td>
+                    </tr>
+                    <tr>
+                      <td><strong><img alt="responsive" src="assets/image/product/responsive.jpg" style="width: 250px; height: 150px; border-width: 0px; border-style: solid; float: left; margin-left: 10px; margin-right: 10px;" />Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing.</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li><a>My Account</a>
+            <div>
+              <ul>
+                <li><a href="#">My Account</a></li>
+                <li><a href="#">Order History</a></li>
+                <li><a href="#" id="wishlist-total">Wish List (0)</a></li>
+                <li><a href="#">Newsletter</a></li>
+              </ul>
+            </div>
+          </li>
+          <li><a>Information</a>
+            <div>
+              <ul>
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="about-us.html">Delivery Information</a></li>
+                <li><a href="about-us.html">Privacy Policy</a></li>
+                <li><a href="elements.html">Elements</a></li>
+              </ul>
+            </div>
+          </li>
+          <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+      </nav>
+      <!--Top Menu(Horizontal Categories) End-->
+      <!-- Mobile Menu Start-->
+      <nav id="menu" class="m-menu"> <span>Menu</span>
+        <ul>
+          <li class="categories"><a>Categories</a>
+            <div>
+              <div class="column"> <a href="category.html">Electronics</a>
+                <div>
+                  <ul>
+                    <li><a href="category.html">Laptops (0)</a></li>
+                    <li><a href="category.html">Desktops (0)</a></li>
+                    <li><a href="category.html">Components (1)</a></li>
+                    <li><a href="category.html">Software (1)</a></li>
+                    <li><a href="category.html">Phones &amp; PDAs (4)</a></li>
+                    <li><a href="category.html">Cameras (2)</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="column"> <a href="category.html">Jewellery</a>
+                <div>
+                  <ul>
+                    <li><a href="category.html">Children's Jewellery (0)</a></li>
+                    <li><a href="category.html">Men's Jewellery (1)</a></li>
+                    <li><a href="category.html">Women's Jewellery (0)</a></li>
+                    <li><a href="category.html">Sample Test (0)</a></li>
+                    <li><a href="category.html">Sample Test11 (0)</a></li>
+                    <li><a href="category.html">Sample Test12 (0)</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="column"> <a href="category.html">Shoes</a>
+                <div>
+                  <ul>
+                    <li><a href="category.html">Children's Shoes (1)</a></li>
+                    <li><a href="category.html">Men's Shoes (2)</a></li>
+                    <li><a href="category.html">Women's Shoes (1)</a></li>
+                    <li><a href="category.html">Test Sample (0)</a></li>
+                    <li><a href="category.html">Test Sample1 (0)</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="column"> <a href="category.html">Clothing</a>
+                <div>
+                  <ul>
+                    <li><a href="category.html">Men (1)</a></li>
+                    <li><a href="category.html">Women (1)</a></li>
+                    <li><a href="category.html">Boys (0)</a></li>
+                    <li><a href="category.html">Girls (0)</a></li>
+                    <li><a href="category.html">Accessories (0)</a></li>
+                    <li><a href="category.html">Sample Test21 (0)</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="column"> <a href="category.html">Kids</a>
+                <div>
+                  <ul>
+                    <li><a href="category.html">Toys Kids (0)</a></li>
+                    <li><a href="category.html">Games (1)</a></li>
+                    <li><a href="category.html">Sample Test22 (0)</a></li>
+                    <li><a href="category.html">Sample Test15 (1)</a></li>
+                    <li><a href="category.html">Sample Kids (1)</a></li>
+                    <li><a href="category.html">Sample Test6 (0)</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="column"> <a href="category.html">Watches</a>
+                <div>
+                  <ul>
+                    <li><a href="category.html">Women's Watches (1)</a></li>
+                    <li><a href="category.html">Men's Watches (0)</a></li>
+                    <li><a href="category.html">Children's Watches (1)</a></li>
+                    <li><a href="category.html">Sample16 (0)</a></li>
+                    <li><a href="category.html">Sample17 (0)</a></li>
+                    <li><a href="category.html">test 18 (0)</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="column"> <a href="category.html">Sports</a>
+                <div>
+                  <ul>
+                    <li><a href="category.html">Women's Sports (1)</a></li>
+                    <li><a href="category.html">Children's Sports (0)</a></li>
+                    <li><a href="category.html">Men's Sports (1)</a></li>
+                    <li><a href="category.html">test 7 (0)</a></li>
+                    <li><a href="category.html">Sample 8 (0)</a></li>
+                    <li><a href="category.html">test 9 (0)</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="column"> <a href="category.html">Health</a>
+                <div>
+                  <ul>
+                    <li><a href="category.html">Sample Test1 (1)</a></li>
+                    <li><a href="category.html">Sample Test2 (0)</a></li>
+                    <li><a href="category.html">test 20 (0)</a></li>
+                    <li><a href="category.html">test 21 (0)</a></li>
+                    <li><a href="category.html">test 22 (0)</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="column"> <a href="category.html">Furniture</a>
+                <div>
+                  <ul>
+                    <li><a href="category.html">Bedrooms Furniture (0)</a></li>
+                    <li><a href="category.html">Kidsrooms furniture (0)</a></li>
+                    <li><a href="category.html">Kitchen Furniture (1)</a></li>
+                    <li><a href="category.html">Showcase Furniture (0)</a></li>
+                    <li><a href="category.html">Table Furniture (1)</a></li>
+                    <li><a href="category.html">Wall Furniture (0)</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="column"><a href="category.html">Books</a>
+                <div>
+                  <ul>
+                    <li><a href="category.html">Audio Books (1)</a></li>
+                    <li><a href="category.html">Comedy Book (1)</a></li>
+                    <li><a href="category.html">Comics Books (0)</a></li>
+                    <li><a href="category.html">Computer Book (1)</a></li>
+                    <li><a href="category.html">Cookies Books (0)</a></li>
+                    <li><a href="category.html">English Books (1)</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <!-- Mobile Menu End-->
+    </header>
+    <!--Header Part End-->
+  <router-outlet></router-outlet>
+  </div>
+  <!--Footer Part Start-->
+  <footer id="footer">
+    <div class="fpart-inner">
+      <div class="social-part">
+        <!-- Custom Column Part Start-->
+        <div class="custom_column part3">
+          <h3>Custom Column</h3>
+          <p>You can insert any content here.<br>
+            <br>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,<br>
+            <br>
+            when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic. <br><br>It has survived not only five centuries, but also the leap into electronic.</p>
+        </div>
+        <!-- Custom Column Part End-->
+        <!-- Twitter Feeds Part Start-->
+        <div id="twitter_footer" class="part3">
+          <h3>Twitter Feed</h3>
+          <div class="twitter_footer">
+            <a class="twitter-timeline" href="https://twitter.com/harnishdesign" data-chrome="noheader nofooter noborders transparent" data-theme="dark" data-height="250"  data-related="twitterapi,twitter" data-aria-polite="assertive" data-widget-id="347621595801608192">Tweets by @harnishdesign</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+          </div>
+        </div>
+        <!-- Twitter Feeds Part End-->
+        <!-- Facebook Box Part Start-->
+        <div id="facebook" class="part3">
+          <h3>Join us on Facebook</h3>
+          <div class="fb-page" data-href="http://www.facebook.com/160281810726316" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"><div class="fb-xfbml-parse-ignore"></div></div>
+          <div id="fb-root"></div>
+          <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));</script>
+        </div>
+        <!-- Facebook Box Part End-->
+      </div>
+      <div class="column">
+        <h3>Information</h3>
+        <ul>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="about-us.html">Delivery Information</a></li>
+          <li><a href="about-us.html">Privacy Policy</a></li>
+          <li><a href="elements.html">Elements</a></li>
+        </ul>
+      </div>
+      <div class="column">
+        <h3>Customer Service</h3>
+        <ul>
+          <li><a href="contact-us.html">Contact Us</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="sitemap.html">Site Map</a></li>
+        </ul>
+      </div>
+      <div class="column">
+        <h3>Extras</h3>
+        <ul>
+          <li><a href="#">Brands</a></li>
+          <li><a href="#">Gift Vouchers</a></li>
+          <li><a href="#">Affiliates</a></li>
+          <li><a href="#">Specials</a></li>
+        </ul>
+      </div>
+      <div class="column">
+        <h3>My Account</h3>
+        <ul>
+          <li><a href="#">My Account</a></li>
+          <li><a href="#">Order History</a></li>
+          <li><a href="#">Wish List</a></li>
+          <li><a href="#">Newsletter</a></li>
+        </ul>
+      </div>
+      <!-- Contact Details Start-->
+      <div class="contact contact_icon">
+        <h3>Contact Us</h3>
+        <ul>
+          <li class="address">Central Square, 22 Hoi Wing Road, Tuen Mun, New Delhi, India</li>
+          <li class="mobile">+91 9896989598</li>
+          <li class="fax">+91 9896989598</li>
+          <li class="email"><a href="mailto:info@contact.com">info@contact.com</a></li>
+        </ul>
+      </div>
+      <!-- Contact Details End-->
+      <div class="clear"></div>
+      <div id="powered">
+        <!-- Payment Images Icon Start-->
+        <div class="payments_types part3"> <img src="assets/image/payment_paypal.png" alt="paypal" title="PayPal"> <img src="assets/image/payment_american.png" alt="american-express" title="American Express"> <img src="assets/image/payment_2checkout.png" alt="2checkout" title="2checkout"> <img src="assets/image/payment_maestro.png" alt="maestro" title="Maestro"> <img src="assets/image/payment_discover.png" alt="discover" title="Discover"> </div>
+        <!-- Payment Images Icon End-->
+        <!-- Powered by Text Start-->
+        <div class="powered_text part3">
+          <p>Polishop Html Template © 2013<br />
+            Template By <a  >Harnish Design</a></p>
+        </div>
+        <!-- Powered by Text End-->
+        <!-- Follow Social Icons Start-->
+        <div class="social part3"> <a href="http://facebook.com/harnishdesign" target="_blank"><img src="assets/image/facebook.png" alt="Facebook" title="Facebook"></a> <a href="https://twitter.com/#!/harnishdesign" target="_blank"><img src="assets/image/twitter.png" alt="Twitter" title="Twitter"> </a> <a href="#" target="_blank"> <img src="assets/image/googleplus.png" alt="Google+" title="Google+"> </a> <a href="#" target="_blank"> <img src="assets/image/pinterest.png" alt="Pinterest" title="Pinterest"> </a> <a href="#" target="_blank"> <img src="assets/image/rss.png" alt="RSS" title="RSS"> </a> <a href="http://www.vimeo.com/#" target="_blank"> <img src="assets/image/vimeo.png" alt="Vimeo" title="Vimeo"> </a> </div>
+        <!-- Follow Social Icons End-->
+        <div class="clear"></div>
+      </div>
+      <!-- Back to Top Button Start-->
+      <div class="back-to-top" id="back-top"><a title="Back to Top" href="javascript:void(0)" class="backtotop">Top</a></div>
+      <!-- Back to Top Button End-->
+    </div>
+  </footer>
+  <!--Footer Part End-->
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
+</body>
+</html>

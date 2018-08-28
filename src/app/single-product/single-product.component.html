@@ -1,0 +1,54 @@
+<link href="../../assets/css1/bootstrap.css" rel="stylesheet" />
+<link href="../../assets/css1/rotating-card.css" rel="stylesheet" />
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+<div class="card-container col-sm-6 col-md-4 col-lg-4 col-xl-3" style="width: 30%" >
+  <div class="card">
+    <div class="front">
+      <div class="cover">
+        <img src="../../assets/image/rotating_card_thumb3.png"/>
+      </div>
+      <div class="user">
+        <img class="img-circle" src="{{p.image_url}}"/>
+      </div>
+      <div class="content">
+        <div class="main">
+          <h3 class="name">{{p.label}}</h3>
+          <p class="profession">{{p.price}} D.T</p>
+
+          <h4 class="text-center" *ngIf="p.quantity > 0" style="color: #00ff47;">En stock</h4>
+          <p class="text-center" *ngIf="p.quantity == 0" style="color: #ff0006;">Pas en stock</p>
+        </div>
+        <div class="footer">
+          <div class="rating">
+           Il y a {{p.quantity}} exemplaires restant en stock
+          </div>
+        </div>
+      </div>
+    </div> <!-- end front panel -->
+    <div class="back">
+      <!--<div class="header">-->
+      <!--<h5 class="motto">"To be or not to be, this is my awesome motto!"</h5>-->
+      <!--</div>-->
+      <div class="content">
+        <div class="main">
+          <h4 class="text-center">Quantité</h4>
+          <div class="stats-container">
+            <div class="stats">
+              <button (click)="dec()" class="btn btn-info">-</button>
+            </div>
+            <div class="stats">
+              <h4>{{quantity}}</h4>
+            </div>
+            <div class="stats">
+              <button (click)="inc()" class="btn btn-info">+</button>
+            </div>
+
+          </div>
+
+        </div>
+        <button style="margin-left: 60px" class="btn-primary" (click)="pushToChart()">Ajouter à la charte</button>
+      </div>
+
+    </div> <!-- end back panel -->
+  </div> <!-- end card -->
+</div> <!-- end card-container -->

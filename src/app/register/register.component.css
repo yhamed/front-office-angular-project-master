@@ -1,0 +1,10 @@
+
+.button { margin:0; padding:7px 12px; background-color: #d45c93; cursor: pointer; color: #fff; font-size: 13px;  font-weight: bold;border: none;  background: #d45c93;}
+
+
+button:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
